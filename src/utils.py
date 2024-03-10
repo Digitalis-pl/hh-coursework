@@ -1,7 +1,7 @@
 from src.class_vacancies import Vacancies
 
 
-def form_list(some):
+def form_list(some) -> list:
     """Формируем список"""
     our_list = []
     for i in some:
@@ -14,7 +14,7 @@ def form_list(some):
     return our_list
 
 
-def sort(vac_list):
+def sort(vac_list) -> list:
     """Сортируем вакансии по зарплате"""
     only_no_salary = []
     for x in vac_list:
