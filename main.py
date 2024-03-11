@@ -1,4 +1,4 @@
-from src.zapros import GetResponse
+from src.class_get_information import GetResponse
 from src.class_info_saver import SaveInfo
 from src.utils import form_list, sort
 from src.class_for_user import ForUser

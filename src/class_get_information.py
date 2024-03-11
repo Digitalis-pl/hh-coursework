@@ -11,7 +11,7 @@ class GetResponse(Get):
         self.top = top_number
         self.all_vacancies = self.get_information()
 
-    def sort_info(self):
+    def sort_info(self) -> list:
         """Сортируем данные"""
         useful_inf = []
         counter = 0
@@ -34,11 +34,17 @@ class GetResponse(Get):
             useful_inf.append(cell)
         return useful_inf
 
-    def get_information(self):
-        params = {'text': f'NAME:{self.name}',
-                  "experience": f"{self.experience}",
-                  "per_page": f"{self.top}",
-                  "area": 113,
-                  "employment": f"{self.employment}"}
-        response = requests.get("https://api.hh.ru/vacancies", params=params)
-        return response.json()
+    def get_information(self) -> dict:
+        try:
+            params = {"text": f'NAME:{self.name}',
+                      "experience": f"{self.experience}",
+                      "per_page": f"{self.top}",
+                      "area": 113,
+                      "employment": f"{self.employment}"}
+            response = requests.get("https://api.hh.ru/vacancies", params=params)
+            if response.status_code == 200:
+                return response.json()
+            else:
+                raise UserWarning
+        except UserWarning:
+            print("Что то пошло не так введите запрос заново")
